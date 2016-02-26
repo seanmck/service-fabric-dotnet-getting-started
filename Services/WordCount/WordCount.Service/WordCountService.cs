@@ -51,14 +51,7 @@ namespace WordCount.Service
                         if (dequeuReply.HasValue)
                         {
                             string word = dequeuReply.Value;
-
-                            if (word.LastIndexOfAny(new char[] { 'a', 'e', 'i', 'o', 'u' }) != 0)
-                            {
-                                await tx.CommitAsync();
-                                await Task.Delay(TimeSpan.FromMilliseconds(100), cancellationToken);
-                                continue;
-                            }
-
+                                                        
                             long count = await wordCountDictionary.AddOrUpdateAsync(
                                 tx,
                                 word,
